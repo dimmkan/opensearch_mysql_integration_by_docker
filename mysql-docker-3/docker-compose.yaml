@@ -1,0 +1,19 @@
+version: '3'
+services:
+  mysqldb3:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=ishop2
+    ports:
+    - 3308:3306
+    volumes:
+    - /var/local/nodejs/mysql-docker-3/db-config:/ets/mysql
+    - /var/local/nodejs/mysql-docker-3/db-data:/var/lib/mysql
+    - /var/local/nodejs/mysql-docker-3/backup/files/:/data_backup/data
+    - /var/local/nodejs/mysql-docker-3/ishop2.sql:/docker-entrypoint-initdb.d/setup.sql
+
+networks:
+  default:
+    name: api_network_3
